@@ -3,12 +3,10 @@ package com.jyeory.sso.service;
 
 import java.util.Optional;
 
-import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.jyeory.sso.web.entity.UserInfo;
 import com.jyeory.sso.web.repository.UserInfoRepository;
@@ -27,7 +25,7 @@ public class OAuth2UserDetailServiceImpl implements OAuth2UserDetailService {
 		
 		System.out.println("\t\t loadUserByUsername username : " + username);
 		
-		Optional<UserInfo> user = userRepo.findById(username);
+		Optional<UserInfo> user = userRepo.findByUserId(username);
 		
 		if(!user.isPresent()) {
 			throw new UsernameNotFoundException("Invalid resource owner, please check resource owner info !");
