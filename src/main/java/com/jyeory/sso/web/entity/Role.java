@@ -1,5 +1,6 @@
 package com.jyeory.sso.web.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
@@ -15,7 +16,10 @@ import lombok.Setter;
 @Setter
 @Getter
 @Table(name="ROLE")
-public class Role {
+public class Role implements Serializable{
+
+	private static final long serialVersionUID = -6622987009231517945L;
+	
 	@Id
 	private String roleCd;
 	private String roleName;

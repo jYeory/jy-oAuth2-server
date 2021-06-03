@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -15,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.LazyCollection;
@@ -34,16 +36,21 @@ import lombok.ToString;
 @Getter
 @ToString
 @Data
-@Table(name="USER_INFO")
+@Table(name="USER_INFO",
+		uniqueConstraints=
+		@UniqueConstraint(columnNames={"USER_ID", "EMAIL"})
+)
 public class UserInfo implements UserDetails, Serializable, OAuth2User {
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	private String userCd;
+	@Column(name="USER_ID")
 	private String userId;
 	private String password;
 	private String name;
+	@Column(name="EMAIL")
 	private String email;
 	private String phone;
 	private String companyName;
