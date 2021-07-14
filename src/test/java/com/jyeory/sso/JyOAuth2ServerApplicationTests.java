@@ -30,6 +30,7 @@ class JyOAuth2ServerApplicationTests {
 	@Test
 	void addUser() {
 		UserInfo user = new UserInfo();
+		user.setUserCd("U21060300000");
 		user.setUserId("test01");
 		user.setPassword(passwordEncoder().encode("test01"));
 		user.setName("test01");
